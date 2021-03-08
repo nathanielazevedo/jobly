@@ -36,7 +36,7 @@ function Login({loginFunc}) {
     history.push('/');
   };
   return (
-    <section className="col-md-4">
+    <section className="profile">
       <Card>
         <CardBody>
           <Form>

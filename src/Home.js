@@ -4,7 +4,9 @@ import image from "./images/ima.jpg"
 function Home() {
   return (
     <>
-      <h1 className="homeText">Find Your Dream Job Today</h1>
+      <div className="homeDiv">
+        <h1 className="text">Find Your Dream Job Today</h1>
+      </div>
       <img src={image} className="homeImage"/>
     </>
   );

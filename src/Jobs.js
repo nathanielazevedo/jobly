@@ -21,7 +21,7 @@ function Jobs() {
   if (jobs) {
     return (
       <>
-        <h2>All Jobs</h2>
+        <h2 className="jobsTitle">All Jobs</h2>
         <CardGroup className="jobs">
           {jobs.map((j) => {
             return <JobCard job={j} key={j.id}/>;

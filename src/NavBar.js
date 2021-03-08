@@ -20,7 +20,7 @@ function NavBar({ logoutFunc }) {
           Jobs
         </Link>
         <Link to="/profile" className="nav-link text-light">
-          Profile
+          {currentUser.username}
         </Link>
         <Link to="/" className="nav-link text-light" onClick={logoutFunc}>
           Logout

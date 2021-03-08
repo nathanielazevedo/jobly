@@ -24,8 +24,8 @@ function JobCard({ job }) {
   
   return (
     <div>
-      <Card body className="m-1">
-        <CardTitle tag="h5">{ job.title }</CardTitle>
+      <Card body className="m-1 myjobcard">
+        <CardTitle tag="h5" className="apply">{ job.title }</CardTitle>
         <CardSubtitle>Salary: { job.salary }</CardSubtitle>
         {job.equity ? <CardSubtitle>Equity: {job.equity}</CardSubtitle> : ''}
         <CardSubtitle>Company Name: { job.companyName }</CardSubtitle>

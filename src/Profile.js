@@ -47,7 +47,8 @@ function Profile() {
     
   };
   return (
-    <section className="col-md-4">
+    <section className="profile">
+      <h1>Edit Your Profile</h1>
       <Card>
         <CardBody>
           <Form>
@@ -72,18 +73,6 @@ function Profile() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Password:</Label>
-              <Input
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="password"
-                required
-              />
-            </FormGroup>
-
-
-            <FormGroup>
               <Label>Email:</Label>
               <Input
                 name="email"
@@ -93,6 +82,17 @@ function Profile() {
                 required
               />
             </FormGroup>
+            <FormGroup>
+              <Label>Password:</Label>
+              <Input
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter Your Password"
+                required
+              />
+            </FormGroup>
+
             <Button onClick={handleSubmit}>Edit Profile</Button>
           </Form>
         </CardBody>

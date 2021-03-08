@@ -41,7 +41,7 @@ function Signup({ signupFunc }) {
     history.push("/");
   };
   return (
-    <section className="col-md-4">
+    <section className="profile">
       <Card>
         <CardBody>
           <Form>
@@ -95,7 +95,7 @@ function Signup({ signupFunc }) {
                 required
               />
             </FormGroup>
-            <Button onClick={handleSubmit}>Login</Button>
+            <Button onClick={handleSubmit}>Sign up</Button>
           </Form>
         </CardBody>
       </Card>

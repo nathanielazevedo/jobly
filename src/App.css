@@ -13,6 +13,7 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    flex-grow: 1;
 }
 
 .companies{
@@ -22,24 +23,61 @@
     align-items: center;
     width: 100%;
     flex-grow: 1;
-    color: blue;
 }
 
 .mycard{
-    width: 45%;
-    margin: 4px;
+    width: 300px;
+    height: 250px;
+    margin: 5px;
+}
+
+.myjobcard{
+    width: 300px;
+    height: 200px;
+    margin: 1px;
 }
 
 .search{
     display: flex;
 }
-.homeText{
+.homeDiv{
     padding: 50px;
     color: white;
     position: absolute;
+    background-color: rgb(0, 0, 0, 0.4);
+    border-radius: 5px;
 }
+
+
 
 .homeImage{
     height: 93vh;
     width: 100vw;
+}
+
+.linkText{
+    color: white;
+}
+
+.apply{
+    flex-grow: 1;
+}
+
+
+.jobsTitle{
+    margin: 20px;
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.profile{
+    width: 80%
+;}
+
+
+.mediaBack{
+    background-color: rgb(0, 0, 0, 0.2);
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 5px;
 }

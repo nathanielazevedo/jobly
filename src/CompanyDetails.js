@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCard from './JobCard';
 import JoblyApi from "./api.js";
+import { Spinner, CardGroup, Media } from "reactstrap";
 
 function CompanyDetails() {
   const { handle } = useParams();
@@ -21,14 +22,29 @@ function CompanyDetails() {
   if (company) {
     return (
       <>
-        <h1>{company.handle}</h1>
-        {company.jobs.map((j) => {
-          return <JobCard job={j} key={ j.id }/>
-        })}
+        <Media className="mediaBack">
+          <Media body>
+            <Media heading>
+              {company.name}
+            </Media>
+            <Media description>
+             Number of Employees: {company.numEmployees}
+            </Media>
+            {company.description}
+          </Media>
+        </Media>
+        
+
+        <h4 className="jobsTitle">Current Openings:</h4>
+        <CardGroup className="jobs">
+          {company.jobs.map((j) => {
+            return <JobCard job={j} key={ j.id }/>
+          })}
+        </CardGroup>
       </>
     )
   } else {
-    return <h3>Loading...</h3>
+    return <Spinner color="dark" />;
   }
 }
 

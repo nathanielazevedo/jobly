@@ -13,12 +13,14 @@ import {
 
 function CompanyCard({ c }) {
   return (
-    <div className="mycard">
-      <Card>
+    <div>
+      <Card className="mycard">
         <CardHeader>{c.name}</CardHeader>
         <CardBody>
           <CardText>{c.description}</CardText>
-          <Link to={`companies/${c.handle}`}>View Company</Link>
+          <Button color="primary">
+            <Link to={`companies/${c.handle}`} className="linkText">View Company</Link>
+          </Button>
         </CardBody>
       </Card>
     </div>
