@@ -2,8 +2,6 @@ import "./App.css";
 import UserContext from "./UserContext";
 import React, { useState, useContext } from "react";
 import JoblyApi from "./api.js";
-import { useHistory } from "react-router-dom";
-
 import {
   Card,
   CardBody,
@@ -14,9 +12,16 @@ import {
   Button,
 } from "reactstrap";
 
+
+//Profile page. Show user info and allow user to edit info.
+//Password input required. Username cannot be edited.
+//Route = /profile
+//App -> Routes -> Profile
+
 function Profile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
+  //creating a controlled component. Initial values are generated from currentUser.
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -24,7 +29,6 @@ function Profile() {
     password: '',
 
   });
-
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -34,6 +38,7 @@ function Profile() {
     }));
   };
 
+  //Submit data to prop func. Set current user to response object. Reset form.
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let res = await JoblyApi.editProfile(currentUser.username, formData);
@@ -83,7 +88,7 @@ function Profile() {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Password:</Label>
+              <Label>Password required for editing profile:</Label>
               <Input
                 name="password"
                 value={formData.password}
@@ -98,9 +103,6 @@ function Profile() {
         </CardBody>
       </Card>
     </section>
-  );
-  return (
-    <h5>Profile Page</h5>
   );
 }
 

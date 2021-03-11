@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import {
-  Card,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
   Input,
   Button,
   InputGroup
 } from "reactstrap";
 
+
+//Form allowing users to search for a particular company name
+
 function SearchForm({ searchFor }) {
 
+  //setup of a controlled component.
   const [formData, setFormData] = useState({
     name: "",
   });
@@ -24,6 +23,7 @@ function SearchForm({ searchFor }) {
     }));
   };
 
+  //call function which was passed down as prop. formData is passed as argument.
   const handleSubmit = (evt) => {
     evt.preventDefault();
     searchFor(formData.name);
@@ -31,9 +31,6 @@ function SearchForm({ searchFor }) {
       name: "",
     });
   };
-
-
-
 
   return (
     <InputGroup className="mt-5 mb-5">
@@ -49,7 +46,5 @@ function SearchForm({ searchFor }) {
     </InputGroup>
   );
 }
-
-
 
 export default SearchForm;

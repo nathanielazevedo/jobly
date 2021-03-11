@@ -1,15 +1,15 @@
-
-import "./App.css";
+import "../App.css";
 import { Link } from "react-router-dom";
 import {
   Card,
   Button,
   CardHeader,
-  CardFooter,
   CardBody,
-  CardTitle,
   CardText,
 } from "reactstrap";
+
+
+//renders individual company card which is passed down in props.
 
 function CompanyCard({ c }) {
   return (

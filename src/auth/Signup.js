@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Card, CardBody, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+
+
+//Handles user signup. Passes form data to prop function. loginFunc(formData);
+//If result is {success : false}, Alerts containing errors are shown.
 
 function Signup({ signupFunc }) {
   const history = useHistory();
+  const [formErrors, setFormErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -27,18 +24,22 @@ function Signup({ signupFunc }) {
       [name]: value,
     }));
   };
-
+  //Submit form to prop func. Reroute to homepage or show errors.
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    await signupFunc(formData);
-    setFormData({
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-    });
-    history.push("/");
+    let res = await signupFunc(formData);
+    if (res.suceess) {
+      setFormData({
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+      });
+      history.push("/");
+    } else {
+      setFormErrors(res.errors);
+    }
   };
   return (
     <section className="profile">
@@ -95,6 +96,11 @@ function Signup({ signupFunc }) {
                 required
               />
             </FormGroup>
+            {formErrors.length
+              ? formErrors.map((e) => {
+                  return <Alert color="danger"> {e} </Alert>;
+                })
+              : null}
             <Button onClick={handleSubmit}>Sign up</Button>
           </Form>
         </CardBody>

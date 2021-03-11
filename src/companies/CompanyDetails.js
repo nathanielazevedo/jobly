@@ -1,14 +1,20 @@
-import "./App.css";
+import "../App.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import JobCard from './JobCard';
-import JoblyApi from "./api.js";
+import JobCard from '../jobs/JobCard';
+import JoblyApi from "../api.js";
 import { Spinner, CardGroup, Media } from "reactstrap";
+
+
+//renders details page for an individual company. company handle passed down in route params. 
+
+//company available jobs also rendered.
 
 function CompanyDetails() {
   const { handle } = useParams();
   const [company, setCompany] = useState();
 
+  //using param, gathers data on company.
   useEffect(function () {
     async function getComps() {
       let comp = await JoblyApi.getCompany(handle);
@@ -16,8 +22,7 @@ function CompanyDetails() {
       setCompany(comp);
     }
     getComps();
-  }, []);
-
+  }, [handle]);
 
   if (company) {
     return (
@@ -33,8 +38,6 @@ function CompanyDetails() {
             {company.description}
           </Media>
         </Media>
-        
-
         <h4 className="jobsTitle">Current Openings:</h4>
         <CardGroup className="jobs">
           {company.jobs.map((j) => {

@@ -1,15 +1,18 @@
-import "./Companies.css";
-import JoblyApi from "./api.js";
+import "../companies/Companies.css";
+import JoblyApi from "../api.js";
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import { Spinner } from "reactstrap";
-import {
-  CardGroup
-} from "reactstrap";
+import { CardGroup } from "reactstrap";
+
+
+//renders all jobs. 
+//gathers all jobs by calling JoblyApi class helper.
 
 function Jobs() {
   const [jobs, setJobs] = useState();
 
+  //upon mounting, gathers all jobs and sets these jobs to state.
   useEffect(function () {
     async function getJobs() {
       let jobs = await JoblyApi.getJobs();

@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import JoblyApi from './api.js';
 import {useHistory} from 'react-router-dom'
-import {
-  Card,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Card, CardBody, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+
+//Handles user login. Passes form data to prop function. loginFunc(formData);
+//If result is {success : false}, Alerts containing errors are shown.
 
 function Login({loginFunc}) {
   const history = useHistory();
+  const [formErrors, setFormErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,14 +21,19 @@ function Login({loginFunc}) {
     }));
   };
 
+  //Submit form to prop func. Reroute to homepage or show errors.
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    await loginFunc(formData);
-    setFormData({
-      username: "",
-      password: ""
-    });
-    history.push('/');
+    let res = await loginFunc(formData);
+    if (res.success) {
+      setFormData({
+        username: "",
+        password: "",
+      });
+      history.push("/");
+    } else {
+      setFormErrors(res.errors);
+    }
   };
   return (
     <section className="profile">
@@ -60,6 +60,11 @@ function Login({loginFunc}) {
                 required
               />
             </FormGroup>
+            {formErrors.length ? 
+              formErrors.map((e) => {
+                return < Alert color="danger"> {e}</Alert>
+              })
+             : null}
             <Button onClick={handleSubmit}>Login</Button>
           </Form>
         </CardBody>

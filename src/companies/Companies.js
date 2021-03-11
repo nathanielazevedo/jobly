@@ -1,25 +1,32 @@
 import "./Companies.css";
-import JoblyApi from "./api.js";
+import JoblyApi from "../api.js";
 import React, { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
-import SearchForm from "./SearchForm";
+import SearchForm from "../SearchForm";
 import { Spinner, CardGroup } from "reactstrap";
+
+
+//Gather companies using JoblyApi class. Loop through these companies and create individual components. 
+
+//Also handles individual company searching.
+
+//Spinner shown until "companies" state not null.
 
 function Companies() {
   const [companies, setCompanies] = useState();
 
+  //gather all companies. set companies state to result.
   useEffect(function () {
     async function getComps() {
-      console.log('running effect')
       let comps = await JoblyApi.getCompanies();
       setCompanies(comps);
     }
     getComps();
   }, []);
 
+  //search for a company, set companies state to result.
   async function search(name) {
     let comps = await JoblyApi.getCompanies(name);
-    console.log(comps)
     setCompanies(comps);
   }
 

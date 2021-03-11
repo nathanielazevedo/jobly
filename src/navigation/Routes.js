@@ -1,17 +1,26 @@
 import React, {useContext} from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-import Companies from "./Companies";
-import CompanyDetails from "./CompanyDetails";
-import Jobs from "./Jobs";
-import Login from "./Login";
-import Signup from "./Signup";
-import Profile from "./Profile";
-import Home from "./Home";
-import UserContext from "./UserContext";
+import Companies from "../companies/Companies";
+import CompanyDetails from "../companies/CompanyDetails";
+import Jobs from "../jobs/Jobs";
+import Login from "../auth/Login";
+import Signup from "../auth/Signup";
+import Profile from "../Profile";
+import Home from "../Home";
+import UserContext from "../UserContext";
 
+
+//routes for navigating page. 
+
+//some routes are protected. Only logged in users can see.
+
+//determination of logged in is done with context.
 
 function Routes({ loginFunc, signupFunc }) {
+
+  //use context to determine if user is logged in.
   const { currentUser } = useContext(UserContext);
+
   return (
     <Switch>
       <Route path="/companies" exact>
